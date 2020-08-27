@@ -2,7 +2,7 @@
 
 PROCESS_NUM=$(ps -ef | grep get_temp | grep -v "grep" | wc -l)
 
-if [ $PROCESS_NUM -ge 1 ]
+if [ $PROCESS_NUM -eq 1 ]
 then 
 	exit 1
 else
