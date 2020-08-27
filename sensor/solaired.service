@@ -1,0 +1,19 @@
+[Unit]
+Description=Recuperation production solaire daemon
+After=network-online.target
+ 
+[Service]
+Type=simple
+ 
+User=pi
+Group=pi
+ 
+ExecStart=python /home/pi/DashScreen/PiHomeDashScreen/sensor/get_solaire_v1.sh 
+ 
+Restart=on-failure
+ 
+# Configures the time to wait before service is stopped forcefully.
+TimeoutStopSec=300
+ 
+[Install]
+WantedBy=multi-user.target
