@@ -47,11 +47,10 @@ def read_temp():
                     if equals_pos != -1:
                         temp_string = lines[1][equals_pos+2:]
                         temp_c.append(float(temp_string) / 1000.0)
-
-                        sensor_line = "{\"capteur\": [{\"nom\": \"'%s'\" \"capteur\": \"'%s'\",\"emplacement\": \"'%s'\",\"valeur\": \"'%s'\"}]}"
+                        sensor_line = '{": [{"nom": "\'%s\'" , "capteur": "\'%s\'" ,"emplacement": "\'%s\'","valeur": "\'%s\'"}]}'
                         var = (sensor, sonde[i][1], sonde[i][2], (float(temp_string) / 1000.0))
                         new_line = sensor_line % var
-                        topic=("capteur\\" + sonde[i][1] + "\\" + sonde[i][2])
+                        topic = ("\capteur\\" + sonde[i][1] + "\\" + sonde[i][2])
                         client.publish(topic, json.dumps(new_line), 1)
                         i = i + 1
     except KeyboardInterrupt:
