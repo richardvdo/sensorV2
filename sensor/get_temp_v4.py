@@ -28,6 +28,7 @@ for folder in device_folder:
 
 
 def read_temp_raw(file):
+    # print("read_temp_raw")
     f = open(file, 'r')
     lines = f.readlines()
     f.close()
@@ -35,34 +36,41 @@ def read_temp_raw(file):
 
 
 def read_temp():
+    # print("read_temp")
     try:
         i = 0
         for sensor in device_file:
             if os.path.exists(sensor):
                 lines = read_temp_raw(sensor)
-                while lines[0].strip()[-3:] != 'YES':
+                # print(lines)
+                while lines[0].strip()[-3:]  != 'YES':
                     time.sleep(0.2)
                     lines = read_temp_raw()
-                    equals_pos = lines[1].find('t=')
-                    if equals_pos != -1:
-                        temp_string = lines[1][equals_pos+2:]
-                        temp_c.append(float(temp_string) / 1000.0)
-                        sensor_line = '{": [{"nom": "\'%s\'" , "capteur": "\'%s\'" ,"emplacement": "\'%s\'","valeur": "\'%s\'"}]}'
-                        var = (sensor, sonde[i][1], sonde[i][2], (float(temp_string) / 1000.0))
-                        new_line = sensor_line % var
-                        topic = ("\capteur\\" + sonde[i][1] + "\\" + sonde[i][2])
-                        client.publish(topic, json.dumps(new_line), 1)
-                        i = i + 1
+                equals_pos = lines[1].find('t=')
+
+                if equals_pos != -1:
+                    temp_string = lines[1][equals_pos+2:]
+                    temp_c.append(float(temp_string) / 1000.0)
+                    sensor_line = '[{"nom": "\'%s\'" , "type_capteur": "\'%s\'" ,"emplacement": "\'%s\'","valeur": "\'%s\'"}]'
+                    var = (sensor, sonde[i][1], sonde[i][2], (float(temp_string) / 1000.0))
+                    new_line = sensor_line % var
+                    topic = ("capteur/" + sonde[i][1] + "/" + sonde[i][2])
+                    # print(new_line)
+                    # print(topic)
+                    client.publish(topic, new_line, 1)
+                    i = i + 1
     except KeyboardInterrupt:
         pass
 
 
 while True:
+    # print(" \\n boucle \n")
     client = mqtt.Client()
     # Set access token
     # client.username_pw_set(ACCESS_TOKEN)
     client.connect(SERVEUR, 1883, 60)
     client.loop_start()
+    # print("read_temp_raw")
     read_temp()
     client.loop_stop()
     client.disconnect()
