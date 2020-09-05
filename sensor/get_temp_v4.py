@@ -1,9 +1,7 @@
 import os
-import glob
 import time
 import paho.mqtt.client as mqtt
-import json
-import sys
+
 
 SERVEUR = '192.168.1.192'
 
@@ -43,7 +41,7 @@ def read_temp():
             if os.path.exists(sensor):
                 lines = read_temp_raw(sensor)
                 # print(lines)
-                while lines[0].strip()[-3:]  != 'YES':
+                while lines[0].strip()[-3:] != 'YES':
                     time.sleep(0.2)
                     lines = read_temp_raw()
                 equals_pos = lines[1].find('t=')
