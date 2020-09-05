@@ -17,8 +17,11 @@ def read_hum_raw(pin):
 
     humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, pin)
 
-    if humidity is not None and temperature is not None:
-        # print humidity
+    if humidity is not None:
+        # print("hum\\n")
+        # print(humidity)
+        # print("temp\\n")
+        # print(temperature)
         return humidity
     else:
         return "error"
