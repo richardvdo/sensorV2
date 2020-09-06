@@ -10,7 +10,7 @@ SERVEUR = '192.168.1.192'
 device_folder = []
 device_file = []
 temp_c = []
-sonde = [['27', 'humidite', 'garage']]
+sonde = [['27', 'humidite', 'exterieur']]
 
 
 def read_hum_raw(pin):
