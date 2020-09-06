@@ -1,4 +1,4 @@
- #!/bin/sh
+#!/bin/sh
 
 PROCESS_NUM=$(ps -ef | grep get_hum | grep -v "grep" | wc -l)
 
