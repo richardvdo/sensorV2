@@ -38,7 +38,7 @@ def read_temp():
     try:
         i = 0
         for sensor in device_file:
-            if os.path.exists(sensor):
+            if os.path.exists(sensor) and sensor is not None:
                 lines = read_temp_raw(sensor)
                 # print(lines)
                 while lines[0].strip()[-3:] != 'YES':
