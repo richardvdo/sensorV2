@@ -1,5 +1,5 @@
 [Unit]
-Description=Recuperation production solaire daemon
+Description=Recuperation capteur humidite daemon
 Wants=network-online.target
 After=network-online.target
  
@@ -9,7 +9,7 @@ Type=simple
 User=pi
 Group=pi
  
-ExecStart=/home/pi/DashScreen/PiHomeDashScreen/sensor/get_solaire_v1.sh 
+ExecStart=/home/pi/DashScreen/PiHomeDashScreen/sensor/get_hum_v1.sh
  
 Restart=on-failure
 

@@ -1,0 +1,15 @@
+[Unit]
+Description=Recuperation production solaire daemon
+Wants=network-online.target
+After=network-online.target
+ 
+[Service]
+Type=oneshot
+
+User=root
+Group=root
+
+ExecStart=/usr/bin/changermac.sh
+ 
+[Install]
+WantedBy=multi-user.target

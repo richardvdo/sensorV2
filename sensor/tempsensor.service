@@ -1,15 +1,12 @@
 [Unit]
-Description=Recuperation production solaire daemon
+Description=Recuperation capteur temperature daemon
 Wants=network-online.target
 After=network-online.target
  
 [Service]
 Type=simple
- 
-User=pi
-Group=pi
- 
-ExecStart=/home/pi/DashScreen/PiHomeDashScreen/sensor/get_solaire_v1.sh 
+  
+ExecStart=/home/pi/DashScreen/PiHomeDashScreen/sensor/get_temp_v2.sh
  
 Restart=on-failure
 
