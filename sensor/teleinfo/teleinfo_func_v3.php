@@ -203,4 +203,4 @@
   }
 
 ?>
-TODO : y'a plus qu' réecrire les 2 ou 3 fonctions utilisées pour la collecte directement en python. La partie affichage reste la meme en php (juste a changer la bdd')
+// TODO : y'a plus qu' réecrire les 2 ou 3 fonctions utilisées pour la collecte directement en python. La partie affichage reste la meme en php (juste a changer la bdd')
