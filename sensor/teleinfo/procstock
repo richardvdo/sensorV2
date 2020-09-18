@@ -1,0 +1,18 @@
+CREATE DEFINER=`pi`@`%` EVENT `conso` ON SCHEDULE EVERY 1 DAY STARTS '2020-09-19 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO CALL `teleinfo_conso_v1`()
+
+
+
+DELIMITER $$
+CREATE DEFINER=`pi`@`%` PROCEDURE `teleinfo_conso_v1`()
+    MODIFIES SQL DATA
+BEGIN
+DECLARE today_s VARCHAR(255);
+DECLARE today DATETIME;
+DECLARE yesterday DATETIME;
+SET today_s = CURDATE();
+SET today = TIMESTAMP(today_s);
+SET yesterday = TIMESTAMPADD(DAY,-1,today);
+SELECT MAX(timestamp) AS timestamp, MAX(base) AS total_base, ((MAX(base) - MIN(base)) / 1000) AS daily_base FROM puissance WHERE timestamp >= yesterday AND timestamp < today AND base != '';
+INSERT INTO conso (timestamp, total_base, daily_base) VALUES (timestamp, total_base, daily_base);
+END$$
+DELIMITER ;
