@@ -1,0 +1,17 @@
+[Unit]
+Description=Recuperation capteur temperature daemon
+Wants=network-online.target
+After=network-online.target
+ 
+[Service]
+Type=simple
+  
+ExecStart=/home/pi/DashScreen/PiHomeDashScreen/sensor/teleinfo_puissance_v4.sh
+ 
+Restart=on-failure
+
+# Configures the time to wait before service is stopped forcefully.
+TimeoutStopSec=300
+ 
+[Install]
+WantedBy=multi-user.target

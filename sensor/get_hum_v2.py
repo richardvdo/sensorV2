@@ -40,7 +40,7 @@ def read_hum():
             if lines != 'error':
                 # sensor_line = ("insert into sensor_v1.record(timestamp, sensor_name, sensor_type, sensor_place, value) VALUES(NOW(), 'DHT11' , '%s', '%s', '%s')")
                 # sensor_line = ("insert into sensor_v1.record(timestamp, sensor_name, sensor_type, sensor_place, value) VALUES(NOW(), 'DHT11' , '%s', '%s', '%s')")
-                sensor_line = '[{"nom": "DHT11" , "type_capteur": "\'%s\'" ,"emplacement": "\'%s\'","valeur": "\'%s\'"}]'
+                sensor_line = '[{"nom": "\'DHT11\'" , "type_capteur": "\'%s\'" ,"emplacement": "\'%s\'","valeur": "\'%s\'"}]'
                 # print(sensor_line)
                 var = (sonde[i][1], sonde[i][2], lines)
                 # var = ("humi", "gara", lines)
