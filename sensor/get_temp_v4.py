@@ -2,7 +2,10 @@ import os
 import time
 import paho.mqtt.client as mqtt
 
-SERVEUR = '192.168.1.192'
+
+SERVEUR = '192.168.1.180'
+user = 'billyboy85'
+pwd = '66446644'
 
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
@@ -69,6 +72,7 @@ def read_temp():
 while True:
     # print(" \\n boucle \n")
     client = mqtt.Client()
+    client.username_pw_set(user, pwd)
     # Set access token
     # client.username_pw_set(ACCESS_TOKEN)
     client.connect(SERVEUR, 1883, 60)

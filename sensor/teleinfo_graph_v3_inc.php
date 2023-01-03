@@ -1,4 +1,4 @@
-<?php require_once('teleinfo_func_v2.php'); ?>
+<?php require_once('teleinfo_func_v3.php'); ?>
 
 
 
@@ -24,15 +24,15 @@
                              title: 'Consommation instantanée (en W)',
 							 width: 400,
 							 height : 200,
-                             backgroundColor: '#000',
-							 titleTextStyle: {color: '#6495ED',fontSize : '12'},
-                             colors : ['#6495ed'],
+                             backgroundColor: '#FF0000',
+							 titleTextStyle: {color: '#000',fontSize : '14'},
+                             colors : ['#424242'],
                              curveType : 'function',
                              focusTarget : 'category',
-                             lineWidth : '1',
+                             lineWidth : '3',
                              legend : {position: 'none'},
-                             vAxis : {textStyle : {color : '#777777', fontSize : '16'}, gridlines : {color: '#777777', count: 'auto'}, baselineColor : '#AAA', minValue : 0},
-                             hAxis : {textStyle : {color : '#777777'}, gridlines : {color: '#DDD'}}
+                             vAxis : {textStyle : {color : '#FFFFFF', fontSize : '16'}, gridlines : {color: '#FFFFFF', count: 'auto'}, baselineColor : '#AAA', minValue : 0},
+                             hAxis : {textStyle : {color : '#FFFFFF'}, gridlines : {color: '#DDD'}}
         };
 
     dashboard.draw(data,options);
@@ -50,14 +50,14 @@
                    title: 'Consommation journalière (en kW)',
 				   width: 300,
 				   height : 200,
-                   backgroundColor: '#000',
-				   titleTextStyle: {color: '#6495ED',fontSize : '12'},
-                   colors : ['#6495ed', '#6495ed'],
+                   backgroundColor: '#FF0000',
+				   titleTextStyle: {color: '#000',fontSize : '14'},
+                   colors : ['#424242', '#424242'],
                    focusTarget : 'category',
                    isStacked: true,
                    legend : {position: 'none'},
-                   vAxis : {textStyle : {color : '#777777', fontSize : '16'}, gridlines : {color: '#777777', count: 'auto'}, baselineColor : '#AAA', minValue : 0},
-                   hAxis : {textStyle : {color : '#777777'}, gridlines : {color: '#DDD'}}
+                   vAxis : {textStyle : {color : '#FFFFFF', fontSize : '16'}, gridlines : {color: '#FFFFFF', count: 'auto'}, baselineColor : '#AAA', minValue : 0},
+                   hAxis : {textStyle : {color : '#FFFFFF'}, gridlines : {color: '#DDD'}}
               };
 
 

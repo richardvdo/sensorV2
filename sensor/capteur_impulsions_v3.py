@@ -5,7 +5,7 @@ import time
 import datetime
 import paho.mqtt.client as mqtt
 
-SERVEUR = '192.168.1.192'
+SERVEUR = '192.168.1.61'
 compteur_principal = 0.0
 compteur = 0
 dateJour = 0
@@ -25,14 +25,14 @@ def cb_compteur_principal(channel):
         dateveille1 = dateveille.strftime('%Y-%m-%d')
         timestampveille = time.mktime(datetime.datetime.strptime(dateveille1, "%Y-%m-%d").timetuple())
         # insertline = "insert into solaire_v1.puissance(timestamp, watt) VALUES('%s', '%s')"
-        insertline = '[{"timestamp": "\'%s\'" , "watt": "\'%s\'" }]'
+        insertline = '{"puissance":{"timestamp": "\'%s\'" , "watt": "\'%s\'" }}'
         var = (timestampveille, float(compteur_principal) / 1000.0)
         new_line = insertline % var
         topic = ("capteur/electrique/solaire/puissance")
         client.publish(topic, new_line, 1)
         dateJour = now.strftime('%d')
         compteur_principal = 1
-        compteur = 1
+        compteur = 0
         client.loop_stop()
         client.disconnect()
     else:
@@ -44,7 +44,7 @@ def cb_compteur_principal(channel):
         client.loop_start()
         timestamp = time.mktime(datetime.datetime.now().timetuple())
         # insertline = "insert into solaire_v1.production(timestamp, watt, watt_totale) VALUES('%s',100,'%s')"
-        insertline = '[{"timestamp": "\'%s\'" , "watt": "100" ,"watt_totale": "\'%s\'"}]'
+        insertline = '{"production":{"timestamp": "\'%s\'" , "watt": "100" ,"watt_totale": "\'%s\'"}}'
         var = (timestamp, float(compteur_principal) / 1000.0)
         new_line = insertline % var
         topic = ("capteur/electrique/solaire/production")

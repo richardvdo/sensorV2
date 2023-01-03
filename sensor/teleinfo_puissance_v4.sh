@@ -1,4 +1,4 @@
- #!/bin/sh
+#!/bin/sh
 
 PROCESS_NUM=$(ps -ef | grep teleinfo_puissance_v | grep -v "grep" | wc -l)
 

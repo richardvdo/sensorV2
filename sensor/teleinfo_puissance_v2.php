@@ -3,8 +3,8 @@
 
 header('Content-type: text/html; charset=utf-8');
 
-require_once('sensor_func_v1.php');
+require_once('teleinfo_func_v2.php');
 
-xxxxxxxxxxx();
+collectTeleinfoData();
 
 ?>
