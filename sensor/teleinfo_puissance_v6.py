@@ -3,8 +3,7 @@
 import time
 import paho.mqtt.client as mqtt
 import re
-
-SERVEUR = '192.168.1.192'
+import var
 
 
 def collectteleinfodata():
@@ -17,7 +16,7 @@ def collectteleinfodata():
         iinst = re.sub('`^[0]*`', '',trame_teleinfo['intensiteInstant'])
         # watt = iinst * 220; // intensite; en; A; X; 220; V // stock; les; donnees
         watt = int(iinst) * 230
-        teleinfo_line = '[{"timestamp": "\'%s\'" , "base": "\'%s\'" ,"va": "\'%s\'","iinst": "\'%s\'","watt": "\'%s\'"}]'
+        teleinfo_line = '{"timestamp": "%s" , "base": "%s" ,"va": "%s","iinst": "%s","watt": "%s"}'
         var = (timestamp, base, va, iinst, watt)
         new_line = teleinfo_line % var
         topic = ("capteur/electrique/teleinfo/puissance")
@@ -71,8 +70,8 @@ def getteleinfo():
 while True:
     client = mqtt.Client()
     # Set access token
-    # client.username_pw_set(ACCESS_TOKEN)
-    client.connect(SERVEUR, 1883, 60)
+    client.username_pw_set(var.user, var.pwd)
+    client.connect(var.SERVEUR, 1883, 60)
     client.loop_start()
     # print("read_temp_raw")
     collectteleinfodata()

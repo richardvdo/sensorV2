@@ -1,0 +1,11 @@
+#!/bin/sh
+
+PROCESS_NUM=$(systemctl status solaired.service *sensor.service teleinfo.service | grep active | wc -l)
+
+if [ $PROCESS_NUM -eq 5 ]
+then 
+	
+exit 0
+fi
+        echo "erreur service arrete"
+	exit 1

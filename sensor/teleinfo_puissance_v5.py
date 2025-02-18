@@ -4,8 +4,9 @@ import time
 import paho.mqtt.client as mqtt
 import re
 
-SERVEUR = '192.168.1.192'
-
+SERVEUR = '192.168.1.180'
+user = 'billyboy85'
+pwd = '66446644'
 
 def collectteleinfodata():
 
@@ -71,6 +72,7 @@ def getteleinfo():
 while True:
     client = mqtt.Client()
     # Set access token
+    client.username_pw_set(user, pwd)
     # client.username_pw_set(ACCESS_TOKEN)
     client.connect(SERVEUR, 1883, 60)
     client.loop_start()

@@ -6,7 +6,7 @@ import paho.mqtt.client as mqtt
 import json
 import sys
 
-SERVEUR = '192.168.1.192'
+SERVEUR = '192.168.1.61'
 
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')

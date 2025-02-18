@@ -22,7 +22,7 @@ GPIO.output(Relais4, False)
 
 def lumiere_sam():
     GPIO.output(Relais1, True)
-    time.sleep(0.1)
+    time.sleep(30.1)
     GPIO.output(Relais1, False)
 
 

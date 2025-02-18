@@ -4,8 +4,8 @@ import RPi.GPIO as GPIO
 import time
 import datetime
 import paho.mqtt.client as mqtt
+import var
 
-SERVEUR = '192.168.1.192'
 compteur_principal = 0.0
 compteur = 0
 dateJour = 0
@@ -18,7 +18,8 @@ def cb_compteur_principal(channel):
     now = datetime.datetime.now()
     if now.strftime('%d') != dateJour:
         client = mqtt.Client()
-        client.connect(SERVEUR, 1883, 60)
+        client.username_pw_set(var.user, var.pwd)
+        client.connect(var.SERVEUR, 1883, 60)
         client.loop_start()
         dateJour = now.strftime('%d')
         dateveille = now - datetime.timedelta(1)
@@ -32,7 +33,7 @@ def cb_compteur_principal(channel):
         client.publish(topic, new_line, 1)
         dateJour = now.strftime('%d')
         compteur_principal = 1
-        compteur = 1
+        compteur = 0
         client.loop_stop()
         client.disconnect()
     else:
@@ -40,7 +41,8 @@ def cb_compteur_principal(channel):
     compteur = compteur + 1
     if compteur == 100:
         client = mqtt.Client()
-        client.connect(SERVEUR, 1883, 60)
+        client.username_pw_set(var.user, var.pwd)
+        client.connect(var.SERVEUR, 1883, 60)
         client.loop_start()
         timestamp = time.mktime(datetime.datetime.now().timetuple())
         # insertline = "insert into solaire_v1.production(timestamp, watt, watt_totale) VALUES('%s',100,'%s')"
