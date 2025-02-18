@@ -28,14 +28,6 @@ then
         sudo service tempsensor restart > /dev/null
 fi
 
-service ha-bridge status | grep 'active (running)' > /dev/null 2>&1
-
-if [ $? != 0 ]
-then
-        sudo service ha-bridge restart > /dev/null
-fi
-
-
 # ajout a faire 
 # sudo crontab -e
 # */1 * * * * /opt/launch-crashed-services.sh > /dev/null 2>

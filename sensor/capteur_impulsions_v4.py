@@ -5,9 +5,10 @@ from sqlite3 import Timestamp
 import RPi.GPIO as GPIO
 import time
 import paho.mqtt.client as mqtt
-import var as mqttvar
 
-
+SERVEUR = '192.168.1.180'
+user = 'billyboy85'
+pwd = '66446644'
 compteur = 0.0
 
 
@@ -15,8 +16,8 @@ compteur = 0.0
 def cb_compteur_principal(channel):
     global compteur
     client = mqtt.Client()
-    client.username_pw_set(mqttvar.user, mqttvar.pwd)
-    client.connect(mqttvar.SERVEUR, 1883, 60)
+    client.username_pw_set(user, pwd)
+    client.connect(SERVEUR, 1883, 60)
     client.loop_start()
     dt = datetime.now()
     # getting the timestamp
